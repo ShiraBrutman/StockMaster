@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: capital-gains
+  namespace: i-love-cloud-namespace
+spec:
+  selector:
+    app: capital-gains
+  ports:
+    - protocol: TCP
+      port: 5003
+      targetPort: 5003
+  type: ClusterIP

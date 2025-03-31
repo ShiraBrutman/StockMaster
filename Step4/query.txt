@@ -1,0 +1,4 @@
+stocks:symbol=NVDA
+capital-gains:symbol=AAPL
+stocks:shares=7
+capital-gains:purchase_date=24-10-2024

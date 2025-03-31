@@ -1,0 +1,4 @@
+venv/
+stocks1/venv/
+.DS_Store
+.idea/

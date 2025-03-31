@@ -1,0 +1,46 @@
+services:
+  stocks:
+    build:
+      context: ./stocks
+    container_name: stocks
+    ports:
+      - "5001:8000"
+    depends_on:
+      - db
+    restart: always
+    environment:
+      - MONGO_URI=mongodb://db:27017/stocks_db
+    volumes:
+      - ./logs:/stocks/logs
+
+
+
+  capital-gains:
+    build:
+      context: ./capital_gains_service
+    container_name: capital-gains
+    ports:
+      - "5003:8080"
+    depends_on:
+      - stocks
+      - db
+    restart: always
+    volumes:
+      - ./logs:/capital_gains_service/logs
+
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    restart: always
+    volumes:
+      - db_data:/data/db
+
+volumes:
+  db_data:
+
+
+

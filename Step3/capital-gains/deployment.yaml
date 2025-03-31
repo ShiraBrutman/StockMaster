@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capital-gains
+  namespace: i-love-cloud-namespace
+  labels:
+    app: capital-gains
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capital-gains
+  template:
+    metadata:
+      labels:
+        app: capital-gains
+    spec:
+      containers:
+      - name: capital-gains
+        image: capital-gains:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5003
+        env:
+        - name: STOCKS_SERVICE_URL
+          value: "http://stock-service:5001/stocks"
+        - name: MONGO_URI
+          value: "mongodb://db:27017/stocks_db"
+
